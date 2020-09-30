@@ -59,3 +59,4 @@ Solusi: copy coding import androidx.appcompat.app.AppCompatActivity; dah paste(t
 - Lokasi: app > java > com.kodingindonesia.mycrud > TampilSemuaPgw
 Kendala: di bagian import, menggunakan versi appcompat lama dan harus diubah
 Solusi: copy coding import androidx.appcompat.app.AppCompatActivity; dah paste(timpa) import AppCompatActivity yang lama
+
