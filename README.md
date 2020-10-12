@@ -1,7 +1,8 @@
 # BabyPink_CRUD
 What Is In Here: 
 - CRUD yang sudah berjalan dan di fix sesuai Tutorial di kodingindonesia.com
-- Posisi melakukan input dengan menggunakan spinner. 
+- Posisi melakukan input dengan menggunakan spinner.
+
 Kelompok Baby Pink(Kuning kalau di Rekayasa sistem)
 1. Derwin Galen 1831139
 2. Wilson Vernando 1831011
