@@ -6,10 +6,25 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -21,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //Dibawah ini merupakan perintah untuk mendefinikan View
     private EditText editTextName;
+    Spinner spinnerPosisi;
+    ArrayList<String> posisiList = new ArrayList<>();
+    ArrayAdapter<String> posisiAdapter;
+    RequestQueue requestQueue;
     private EditText editTextDesg;
     private EditText editTextSal;
 
@@ -34,6 +53,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Inisialisasi dari View
         editTextName = (EditText) findViewById(R.id.editTextName);
+
+        requestQueue = Volley.newRequestQueue(this);
+        spinnerPosisi = (Spinner) findViewById(R.id.spinnerPosisi);
+        String url = "http://192.168.100.5/Android/pegawai/list_posisi.php";
+        JsonObjectRequest jsonObjectRequest =  new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("posisi");
+                    for(int i =0; i<jsonArray.length();i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String posisi = jsonObject.optString("posisi");
+                        posisiList.add(posisi);
+                        posisiAdapter =  new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, posisiList);
+                        posisiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerPosisi.setAdapter(posisiAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        );
+        requestQueue.add(jsonObjectRequest);
+
         editTextDesg = (EditText) findViewById(R.id.editTextDesg);
         editTextSal = (EditText) findViewById(R.id.editTextSalary);
 
@@ -50,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addEmployee(){
 
         final String name = editTextName.getText().toString().trim();
-        final String desg = editTextDesg.getText().toString().trim();
+        final String desg = spinnerPosisi.getSelectedItem().toString().trim();
         final String sal = editTextSal.getText().toString().trim();
 
         class AddEmployee extends AsyncTask<Void,Void,String>{

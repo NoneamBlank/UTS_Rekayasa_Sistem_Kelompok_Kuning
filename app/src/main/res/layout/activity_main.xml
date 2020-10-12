@@ -20,11 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Posisi" />
-
+    <Spinner
+        android:id="@+id/spinnerPosisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+    <!--
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextDesg" />
+        android:id="@+id/editTextDesg" />-->
 
     <TextView
         android:layout_width="wrap_content"
