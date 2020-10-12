@@ -17,7 +17,7 @@ public class splashscreen extends AppCompatActivity {
             @Override
             public void run() {
 
-                //setelah loading maka akan langsung berpindah ke home activity
+                //setelah loading maka akan langsung berpindah ke home activityaku
                 Intent home=new Intent(splashscreen.this, MainActivity.class);
                 startActivity(home);
                 finish();
