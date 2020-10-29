@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -33,6 +34,7 @@ public class TampilSemuaPgw extends AppCompatActivity implements ListView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_semua_pgw);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + getString(R.string.app_name) + "</font>"));
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(this);
         getJSON();
@@ -49,11 +51,13 @@ public class TampilSemuaPgw extends AppCompatActivity implements ListView.OnItem
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
                 String id = jo.getString(konfigurasi.TAG_ID);
-                String name = jo.getString(konfigurasi.TAG_NAMA);
+                String nama = jo.getString(konfigurasi.TAG_NAMA);
+                String noinduk = jo.getString(konfigurasi.TAG_NO_INDUK);
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put(konfigurasi.TAG_ID,id);
-                employees.put(konfigurasi.TAG_NAMA,name);
+                employees.put(konfigurasi.TAG_NAMA,nama);
+                employees.put(konfigurasi.TAG_NO_INDUK,noinduk);
                 list.add(employees);
             }
 
@@ -63,8 +67,8 @@ public class TampilSemuaPgw extends AppCompatActivity implements ListView.OnItem
 
         ListAdapter adapter = new SimpleAdapter(
                 TampilSemuaPgw.this, list, R.layout.list_item,
-                new String[]{konfigurasi.TAG_ID,konfigurasi.TAG_NAMA},
-                new int[]{R.id.id, R.id.name});
+                new String[]{konfigurasi.TAG_ID,konfigurasi.TAG_NAMA,konfigurasi.TAG_NO_INDUK},
+                new int[]{R.id.textId, R.id.nama, R.id.textNoInduk});
 
         listView.setAdapter(adapter);
     }
@@ -102,8 +106,8 @@ public class TampilSemuaPgw extends AppCompatActivity implements ListView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, TampilPegawai.class);
         HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
-        String empId = map.get(konfigurasi.TAG_ID).toString();
-        intent.putExtra(konfigurasi.EMP_ID,empId);
+        String mhsId = map.get(konfigurasi.TAG_ID).toString();
+        intent.putExtra(konfigurasi.MHS_ID,mhsId);
         startActivity(intent);
     }
 }

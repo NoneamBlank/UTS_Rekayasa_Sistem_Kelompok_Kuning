@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CRUDBabyPink.iml" filepath="$PROJECT_DIR$/.idea/modules/CRUDBabyPink.iml" group="CRUDBabyPink" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CRUDBabyPink-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CRUDBabyPink-app.iml" group="CRUDBabyPink/app" />
       <module fileurl="file://$PROJECT_DIR$/MyCRUD.iml" filepath="$PROJECT_DIR$/MyCRUD.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MyCRUD-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MyCRUD-app.iml" group="MyCRUD/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/derwi-MyCRUD.iml" filepath="$PROJECT_DIR$/.idea/modules/derwi-MyCRUD.iml" group="MyCRUD" />
     </modules>
   </component>
 </project>

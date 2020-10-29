@@ -1,5 +1,6 @@
 package com.kodingindonesia.mycrud;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,8 +8,10 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 /**
@@ -26,9 +30,16 @@ import java.util.HashMap;
 public class TampilPegawai extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editTextId;
-    private EditText editTextName;
-    private EditText editTextDesg;
-    private EditText editTextSalary;
+    private EditText editTextNoInduk;
+    private EditText editTextNama;
+    private EditText editTextJenisKelamin;
+    private EditText editTextTempatLahir;
+    private EditText editTextTanggalLahir;
+    private EditText editTextSekolahAsal;
+    private EditText editTextAlamat;
+    private EditText editTextNamaWali;
+    private EditText editTextTelp;
+    private EditText editTextPaket;
 
     private Button buttonUpdate;
     private Button buttonDelete;
@@ -39,15 +50,25 @@ public class TampilPegawai extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_pegawai);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + getString(R.string.app_name) + "</font>"));
 
         Intent intent = getIntent();
 
-        id = intent.getStringExtra(konfigurasi.EMP_ID);
+        id = intent.getStringExtra(konfigurasi.MHS_ID);
 
         editTextId = (EditText) findViewById(R.id.editTextId);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        editTextDesg = (EditText) findViewById(R.id.editTextDesg);
-        editTextSalary = (EditText) findViewById(R.id.editTextSalary);
+        editTextNoInduk = (EditText) findViewById(R.id.editTextNoInduk);
+        editTextNama = (EditText) findViewById(R.id.editTextNama);
+        editTextJenisKelamin = (EditText) findViewById(R.id.editTextJenisKelamin);
+        editTextTempatLahir = (EditText) findViewById(R.id.editTextTempatLahir);
+        //tgl lahir
+        editTextTanggalLahir = (EditText) findViewById(R.id.editTextTanggalLahir);
+
+        editTextSekolahAsal = (EditText) findViewById(R.id.editTextSekolahAsal);
+        editTextAlamat = (EditText) findViewById(R.id.editTextAlamat);
+        editTextNamaWali = (EditText) findViewById(R.id.editTextNamaWali);
+        editTextTelp = (EditText) findViewById(R.id.editTextNoTelp);
+        editTextPaket = (EditText) findViewById(R.id.editTextPaket);
 
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         buttonDelete = (Button) findViewById(R.id.buttonDelete);
@@ -92,13 +113,28 @@ public class TampilPegawai extends AppCompatActivity implements View.OnClickList
             JSONObject jsonObject = new JSONObject(json);
             JSONArray result = jsonObject.getJSONArray(konfigurasi.TAG_JSON_ARRAY);
             JSONObject c = result.getJSONObject(0);
-            String name = c.getString(konfigurasi.TAG_NAMA);
-            String desg = c.getString(konfigurasi.TAG_POSISI);
-            String sal = c.getString(konfigurasi.TAG_GAJIH);
+            String noinduk = c.getString(konfigurasi.TAG_NO_INDUK);
+            String nama = c.getString(konfigurasi.TAG_NAMA);
+            String jk = c.getString(konfigurasi.TAG_JENIS_KELAMIN);
+            String tempatlahir = c.getString(konfigurasi.TAG_TEMPAT_LAHIR);
+            String tanggallahir = c.getString(konfigurasi.TAG_TANGGAL_LAHIR);
+            String sekolahasal = c.getString(konfigurasi.TAG_SEKOLAH_ASAL);
+            String alamat = c.getString(konfigurasi.TAG_ALAMAT);
+            String namawali = c.getString(konfigurasi.TAG_NAMA_WALI);
+            String telp = c.getString(konfigurasi.TAG_NO_TELP);
+            String paket = c.getString(konfigurasi.TAG_PAKET);
 
-            editTextName.setText(name);
-            editTextDesg.setText(desg);
-            editTextSalary.setText(sal);
+            editTextNoInduk.setText(noinduk);
+            editTextNama.setText(nama);
+            editTextJenisKelamin.setText(jk);
+            editTextTempatLahir.setText(tempatlahir);
+            editTextTanggalLahir.setText(tanggallahir);
+            editTextSekolahAsal.setText(sekolahasal);
+            editTextAlamat.setText(alamat);
+            editTextNamaWali.setText(namawali);
+            editTextTelp.setText(telp);
+            editTextPaket.setText(paket);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -107,9 +143,16 @@ public class TampilPegawai extends AppCompatActivity implements View.OnClickList
 
 
     private void updateEmployee(){
-        final String name = editTextName.getText().toString().trim();
-        final String desg = editTextDesg.getText().toString().trim();
-        final String salary = editTextSalary.getText().toString().trim();
+        final String noinduk = editTextNoInduk.getText().toString().trim();
+        final String nama = editTextNama.getText().toString().trim();
+        final String jk = editTextJenisKelamin.getText().toString().trim();
+        final String tempatlahir = editTextTempatLahir.getText().toString().trim();
+        final String tanggallahir = editTextTanggalLahir.getText().toString().trim();
+        final String sekolahasal = editTextSekolahAsal.getText().toString().trim();
+        final String alamat = editTextAlamat.getText().toString().trim();
+        final String namawali = editTextNamaWali.getText().toString().trim();
+        final String telp = editTextTelp.getText().toString().trim();
+        final String paket = editTextPaket.getText().toString().trim();
 
         class UpdateEmployee extends AsyncTask<Void,Void,String>{
             ProgressDialog loading;
@@ -130,9 +173,16 @@ public class TampilPegawai extends AppCompatActivity implements View.OnClickList
             protected String doInBackground(Void... params) {
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put(konfigurasi.KEY_EMP_ID,id);
-                hashMap.put(konfigurasi.KEY_EMP_NAMA,name);
-                hashMap.put(konfigurasi.KEY_EMP_POSISI,desg);
-                hashMap.put(konfigurasi.KEY_EMP_GAJIH,salary);
+                hashMap.put(konfigurasi.KEY_EMP_NO_INDUK,noinduk);
+                hashMap.put(konfigurasi.KEY_EMP_NAMA,nama);
+                hashMap.put(konfigurasi.KEY_EMP_JENIS_KELAMIN,jk);
+                hashMap.put(konfigurasi.KEY_EMP_TEMPAT_LAHIR,tempatlahir);
+                hashMap.put(konfigurasi.KEY_EMP_TANGGAL_LAHIR,tanggallahir);
+                hashMap.put(konfigurasi.KEY_EMP_SEKOLAH_ASAL,sekolahasal);
+                hashMap.put(konfigurasi.KEY_EMP_ALAMAT,alamat);
+                hashMap.put(konfigurasi.KEY_EMP_NAMA_WALI,namawali);
+                hashMap.put(konfigurasi.KEY_EMP_NO_TELP,telp);
+                hashMap.put(konfigurasi.KEY_EMP_PAKET,paket);
 
                 RequestHandler rh = new RequestHandler();
 
@@ -177,7 +227,7 @@ public class TampilPegawai extends AppCompatActivity implements View.OnClickList
 
     private void confirmDeleteEmployee(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Apakah Kamu Yakin Ingin Menghapus Pegawai ini?");
+        alertDialogBuilder.setMessage("Apakah Kamu Yakin Ingin Menghapus Mahasiswa ini?");
 
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {

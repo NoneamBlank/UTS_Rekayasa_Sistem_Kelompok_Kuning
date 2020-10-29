@@ -11,26 +11,41 @@ public class konfigurasi {
     //Pada tutorial Kali ini, karena kita membuat localhost maka alamatnya tertuju ke IP komputer
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
-    public static final String URL_ADD="http://192.168.100.5/Android/pegawai/tambahPgw.php";
-    public static final String URL_GET_ALL = "http://192.168.100.5/Android/pegawai/tampilSemuaPgw.php";
-    public static final String URL_GET_EMP = "http://192.168.100.5/Android/pegawai/tampilPgw.php?id=";
-    public static final String URL_UPDATE_EMP = "http://192.168.100.5/Android/pegawai/updatePgw.php";
-    public static final String URL_DELETE_EMP = "http://192.168.100.5/Android/pegawai/hapusPgw.php?id=";
+    public static final String URL_ADD="http://babypinkapi.scalondesign.com/tambahMhs.php";
+    public static final String URL_GET_ALL = "http://babypinkapi.scalondesign.com/tampilSemuaMhs.php";
+    public static final String URL_GET_EMP = "http://babypinkapi.scalondesign.com/tampilMhs.php?id=";
+    public static final String URL_UPDATE_EMP = "http://babypinkapi.scalondesign.com/updateMhs.php";
+    public static final String URL_DELETE_EMP = "http://babypinkapi.scalondesign.com/hapusMhs.php?id=";
 
     //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
     public static final String KEY_EMP_ID = "id";
-    public static final String KEY_EMP_NAMA = "name";
-    public static final String KEY_EMP_POSISI = "desg"; //desg itu variabel untuk posisi
-    public static final String KEY_EMP_GAJIH = "salary"; //salary itu variabel untuk gajih
+    public static final String KEY_EMP_NO_INDUK = "no_induk";
+    public static final String KEY_EMP_NAMA = "nama";
+    public static final String KEY_EMP_JENIS_KELAMIN = "jenis_kelamin";
+    public static final String KEY_EMP_TEMPAT_LAHIR = "tempat_lahir";
+    public static final String KEY_EMP_TANGGAL_LAHIR = "tanggal_lahir";
+    public static final String KEY_EMP_SEKOLAH_ASAL = "sekolah_asal";
+    public static final String KEY_EMP_ALAMAT = "alamat";
+    public static final String KEY_EMP_NAMA_WALI = "nama_wali";
+    public static final String KEY_EMP_NO_TELP = "no_telp";
+    public static final String KEY_EMP_PAKET = "paket";
+
 
     //JSON Tags
     public static final String TAG_JSON_ARRAY="result";
     public static final String TAG_ID = "id";
-    public static final String TAG_NAMA = "name";
-    public static final String TAG_POSISI = "desg";
-    public static final String TAG_GAJIH = "salary";
+    public static final String TAG_NO_INDUK = "no_induk";
+    public static final String TAG_NAMA = "nama";
+    public static final String TAG_JENIS_KELAMIN = "jenis_kelamin";
+    public static final String TAG_TEMPAT_LAHIR = "tempat_lahir";
+    public static final String TAG_TANGGAL_LAHIR = "tanggal_lahir";
+    public static final String TAG_SEKOLAH_ASAL = "sekolah_asal";
+    public static final String TAG_ALAMAT = "alamat";
+    public static final String TAG_NAMA_WALI = "nama_wali";
+    public static final String TAG_NO_TELP = "no_telp";
+    public static final String TAG_PAKET = "paket";
 
-    //ID karyawan
-    //emp itu singkatan dari Employee
-    public static final String EMP_ID = "emp_id";
+    //ID mahasiswa
+    //mhs itu singkatan dari Mahasiswa
+    public static final String MHS_ID = "mhs_id";
 }

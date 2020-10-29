@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#FEE074"
     android:gravity="center"
     tools:context=".splashscreen">
 
@@ -13,7 +13,7 @@
         android:layout_height="180dp"
         android:id="@+id/logo"
         android:drawable="@color/colorPrimary"
-        android:src="@drawable/logocrud"
+        android:src="@drawable/logouib"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

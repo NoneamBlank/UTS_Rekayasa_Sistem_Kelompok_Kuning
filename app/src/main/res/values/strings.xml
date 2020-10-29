@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">MyCRUD</string>
+    <string name="app_name">Yellow Tutor</string>
+
+    <string-array name="jk">
+        <item>P</item>
+        <item>W</item>
+    </string-array>
 </resources>
